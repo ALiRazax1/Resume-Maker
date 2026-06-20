@@ -47,23 +47,23 @@ export default function EditorPanel() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-950 border border-slate-800/80 rounded-2xl overflow-hidden shadow-2xl">
+    <div className="flex flex-col h-full bg-white dark:bg-gray-900/80 border border-gray-200 dark:border-white/8 rounded-2xl overflow-hidden shadow-sm dark:shadow-2xl">
       {/* 1. Header Toolbar */}
-      <div className="flex flex-wrap items-center justify-between p-4 gap-2 border-b border-slate-800 bg-slate-900/40">
+      <div className="flex flex-wrap items-center justify-between p-4 gap-2 border-b border-gray-200 dark:border-white/8 bg-gray-50/50 dark:bg-slate-900/40">
         <div className="space-y-0.5">
-          <span className="text-xs font-bold text-slate-200">Editor Workspace</span>
-          <p className="text-[10px] text-slate-500">Fill out your resume details below.</p>
+          <span className="text-xs font-bold text-gray-800 dark:text-slate-200">Editor Workspace</span>
+          <p className="text-[10px] text-gray-400 dark:text-slate-500">Fill out your resume details below.</p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={loadSampleData}
-            className="text-[10px] bg-slate-800 hover:bg-slate-700 hover:text-white text-slate-300 font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700/50 transition-colors cursor-pointer"
+            className="text-[10px] bg-gray-100 dark:bg-white/5 hover:bg-emerald-500 dark:hover:bg-emerald-500 hover:text-white text-gray-700 dark:text-gray-300 font-semibold px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-white/10 transition-colors cursor-pointer"
           >
             Load Sample
           </button>
           <button
             onClick={resetResume}
-            className="text-[10px] bg-red-950/20 hover:bg-red-600 hover:text-white text-red-400 font-semibold px-2.5 py-1.5 rounded-lg border border-red-900/30 transition-all cursor-pointer"
+            className="text-[10px] bg-red-50 dark:bg-red-950/20 hover:bg-red-600 hover:text-white text-red-600 dark:text-red-400 font-semibold px-2.5 py-1.5 rounded-lg border border-red-200 dark:border-red-900/30 transition-all cursor-pointer"
           >
             Clear All
           </button>
@@ -71,13 +71,13 @@ export default function EditorPanel() {
       </div>
 
       {/* 2. Top-level Tab Bar */}
-      <div className="grid grid-cols-3 border-b border-slate-800 bg-slate-900/20 text-center">
+      <div className="grid grid-cols-3 border-b border-gray-200 dark:border-white/8 bg-gray-50/30 dark:bg-slate-900/20 text-center">
         <button
           onClick={() => setActiveTab('content')}
           className={`py-3 text-xs font-bold transition-all cursor-pointer border-b-2 ${
             activeTab === 'content'
-              ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-500/5'
+              : 'border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200'
           }`}
         >
           1. Edit Content
@@ -86,8 +86,8 @@ export default function EditorPanel() {
           onClick={() => setActiveTab('reorder')}
           className={`py-3 text-xs font-bold transition-all cursor-pointer border-b-2 ${
             activeTab === 'reorder'
-              ? 'border-b-2 border-indigo-500 text-indigo-400 bg-indigo-500/5'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-500/5'
+              : 'border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200'
           }`}
         >
           2. Reorder
@@ -96,8 +96,8 @@ export default function EditorPanel() {
           onClick={() => setActiveTab('style')}
           className={`py-3 text-xs font-bold transition-all cursor-pointer border-b-2 ${
             activeTab === 'style'
-              ? 'border-b-2 border-indigo-500 text-indigo-400 bg-indigo-500/5'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-500/5'
+              : 'border-transparent text-gray-500 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-200'
           }`}
         >
           3. Style & Font
@@ -117,8 +117,8 @@ export default function EditorPanel() {
                   key={sec.id}
                   className={`border rounded-xl transition-all duration-200 overflow-hidden ${
                     isExpanded
-                      ? 'border-indigo-500/60 bg-slate-900/30'
-                      : 'border-slate-800/80 bg-slate-900/10 hover:border-slate-700/60'
+                      ? 'border-emerald-500/60 bg-emerald-50/10 dark:bg-emerald-500/5'
+                      : 'border-gray-200 dark:border-white/5 bg-gray-50/30 dark:bg-white/[0.01] hover:border-emerald-300 dark:hover:border-white/10'
                   }`}
                 >
                   {/* Section Accordion Header */}
@@ -128,27 +128,27 @@ export default function EditorPanel() {
                   >
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-lg transition-all ${
-                        isExpanded ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/15' : 'bg-slate-800 text-slate-400'
+                        isExpanded ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/15' : 'bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-gray-500'
                       }`}>
                         <Icon className="w-4 h-4" />
                       </div>
                       <div className="text-left">
-                        <h4 className="text-xs font-bold text-slate-100">{sec.name}</h4>
-                        <p className="text-[10px] text-slate-500">{sec.description}</p>
+                        <h4 className="text-xs font-bold text-gray-800 dark:text-slate-100">{sec.name}</h4>
+                        <p className="text-[10px] text-gray-400 dark:text-slate-500">{sec.description}</p>
                       </div>
                     </div>
                     <div>
                       {isExpanded ? (
-                        <ChevronUp className="w-4 h-4 text-slate-400" />
+                        <ChevronUp className="w-4 h-4 text-gray-400 dark:text-slate-500" />
                       ) : (
-                        <ChevronDown className="w-4 h-4 text-slate-400" />
+                        <ChevronDown className="w-4 h-4 text-gray-400 dark:text-slate-500" />
                       )}
                     </div>
                   </div>
 
                   {/* Accordion Form Body */}
                   {isExpanded && (
-                    <div className="p-4 border-t border-slate-800 bg-slate-950/40">
+                    <div className="p-4 border-t border-gray-200 dark:border-white/5 bg-white dark:bg-black/20">
                       {sec.component}
                     </div>
                   )}

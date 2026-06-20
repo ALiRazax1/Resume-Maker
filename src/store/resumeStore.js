@@ -8,9 +8,10 @@ export const useResumeStore = create(
       // State
       resumeData: { ...defaultResumeData },
       activeTemplate: 'modern',
-      accentColor: '#3b82f6', // Indigo-like blue default
+      accentColor: '#10b981', // Emerald green default
       fontPairing: 'inter',
       showPhoto: true,
+      theme: 'dark', // 'dark' | 'light'
       sectionOrder: [
         'summary',
         'experience',
@@ -265,6 +266,7 @@ export const useResumeStore = create(
       setFontPairing: (fontId) => set({ fontPairing: fontId }),
       setShowPhoto: (show) => set({ showPhoto: show }),
       setSectionOrder: (order) => set({ sectionOrder: order }),
+      setTheme: (theme) => set({ theme }),
 
       // Reset
       resetResume: () =>

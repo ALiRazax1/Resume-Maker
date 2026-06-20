@@ -38,6 +38,7 @@ const ResumePreview = React.forwardRef((props, ref) => {
     if (!parentRef.current) return;
 
     const handleResize = () => {
+      if (!parentRef.current) return; // guard against unmounted ref
       const parentWidth = parentRef.current.clientWidth;
       const A4_WIDTH = 794; // 210mm at 96dpi
       const targetWidth = parentWidth - 16; // 8px padding each side
@@ -96,7 +97,7 @@ const ResumePreview = React.forwardRef((props, ref) => {
   };
 
   return (
-    <div className="flex justify-center p-3 sm:p-5 bg-slate-900/40 border border-slate-800/80 rounded-2xl shadow-2xl h-auto lg:h-[calc(100vh-220px)] lg:min-h-[500px]">
+    <div className="flex justify-center p-3 sm:p-5 bg-gray-100 dark:bg-gray-900/60 border border-gray-200 dark:border-white/8 rounded-2xl shadow-sm dark:shadow-2xl h-auto lg:h-[calc(100vh-200px)] lg:min-h-[500px]">
       <div ref={parentRef} className="w-full h-full overflow-y-auto overflow-x-hidden flex justify-center items-start">
         {/* Scale bounding box */}
         <div

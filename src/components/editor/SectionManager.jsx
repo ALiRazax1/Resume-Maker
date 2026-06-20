@@ -40,8 +40,8 @@ function SortableSectionItem({ id, label }) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`flex items-center justify-between p-3.5 bg-slate-900 border border-slate-800 rounded-xl select-none transition ${
-        isDragging ? 'shadow-xl border-indigo-500 bg-slate-800/80' : 'hover:border-slate-700'
+      className={`flex items-center justify-between p-3.5 bg-gray-50/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 rounded-xl select-none transition ${
+        isDragging ? 'shadow-xl border-emerald-500 bg-emerald-50 dark:bg-slate-800/80' : 'hover:border-emerald-300 dark:hover:border-white/10'
       }`}
     >
       <div className="flex items-center gap-3">
@@ -49,14 +49,14 @@ function SortableSectionItem({ id, label }) {
         <button
           {...attributes}
           {...listeners}
-          className="text-slate-500 hover:text-slate-300 cursor-grab active:cursor-grabbing p-1 rounded hover:bg-slate-800 transition"
+          className="text-gray-400 dark:text-slate-500 hover:text-emerald-500 dark:hover:text-emerald-400 cursor-grab active:cursor-grabbing p-1 rounded hover:bg-gray-100 dark:hover:bg-white/5 transition"
           aria-label="Drag to reorder"
         >
           <GripVertical className="w-4 h-4" />
         </button>
-        <span className="text-xs font-semibold text-slate-200">{label}</span>
+        <span className="text-xs font-semibold text-gray-700 dark:text-slate-200">{label}</span>
       </div>
-      <div className="text-[10px] text-slate-500 font-semibold px-2 py-0.5 rounded-md bg-slate-950 border border-slate-800">
+      <div className="text-[10px] text-gray-400 dark:text-slate-500 font-semibold px-2 py-0.5 rounded-md bg-white dark:bg-slate-950 border border-gray-200 dark:border-white/5">
         Moveable
       </div>
     </div>
@@ -101,11 +101,11 @@ export default function SectionManager() {
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-lg font-bold text-white mb-1 flex items-center gap-2">
-          <LayoutGrid className="w-5 h-5 text-indigo-500" />
+        <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-1 flex items-center gap-2">
+          <LayoutGrid className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
           Section Order
         </h3>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-gray-400 dark:text-slate-400">
           Drag and drop sections to rearrange the layout of your resume. Reordering takes effect in real-time.
         </p>
       </div>

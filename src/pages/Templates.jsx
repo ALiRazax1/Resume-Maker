@@ -2,84 +2,82 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useResumeStore } from '../store/resumeStore';
 import { resumeTemplates } from '../data/templates';
-import { Check } from 'lucide-react';
+import { Check, LayoutGrid } from 'lucide-react';
 
 export default function Templates() {
   const navigate = useNavigate();
   const { activeTemplate, setActiveTemplate } = useResumeStore();
 
-  const handleSelectTemplate = (templateId) => {
+  const handleSelect = (templateId) => {
     setActiveTemplate(templateId);
     navigate('/builder');
   };
 
   return (
-    <div className="bg-slate-950 text-slate-100 min-h-screen py-16 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen py-16 px-6">
+      {/* Ambient blob */}
+      <div className="fixed top-0 right-0 w-[400px] h-[400px] bg-emerald-400/8 dark:bg-emerald-500/6 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4">
-            Professional Resume Templates
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700/50 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-5">
+            <LayoutGrid className="w-3.5 h-3.5" />
+            10 Templates Available
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
+            Professional Resume <span className="text-gradient-em">Templates</span>
           </h1>
-          <p className="text-slate-400 max-w-xl mx-auto text-base sm:text-lg">
-            Choose from our collection of 10 high-quality, ATS-optimized templates. Switch between them instantly at any time.
+          <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto text-base sm:text-lg">
+            ATS-optimized and designed to impress. Switch between templates instantly — your data carries over.
           </p>
         </div>
 
-        {/* Templates Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {resumeTemplates.map((template) => {
             const isSelected = activeTemplate === template.id;
-
             return (
               <div
                 key={template.id}
-                onClick={() => handleSelectTemplate(template.id)}
-                className={`bg-slate-900 border rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 flex flex-col justify-between hover:scale-[1.02] ${
+                onClick={() => handleSelect(template.id)}
+                className={`group bg-white dark:bg-white/[0.03] rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 flex flex-col hover:-translate-y-1 border ${
                   isSelected
-                    ? 'border-indigo-500 shadow-lg shadow-indigo-500/10'
-                    : 'border-slate-800 hover:border-slate-700 shadow-md hover:shadow-xl'
+                    ? 'border-emerald-400 dark:border-emerald-600 shadow-xl shadow-emerald-500/20'
+                    : 'border-gray-200 dark:border-white/8 hover:border-emerald-300 dark:hover:border-emerald-700/60 shadow-sm hover:shadow-lg hover:shadow-emerald-500/10'
                 }`}
               >
-                {/* Visual Accent */}
-                <div className={`h-48 bg-gradient-to-br ${template.thumbnailColor} p-6 flex flex-col justify-between relative`}>
+                {/* Colour swatch */}
+                <div className={`h-44 bg-gradient-to-br ${template.thumbnailColor} p-5 flex flex-col justify-between relative`}>
                   <div className="flex justify-between items-start">
-                    <span className="bg-slate-950/80 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-semibold text-white uppercase tracking-wider">
-                      {template.supportsPhoto ? 'Photo Toggle Supported' : 'No Photo Option'}
+                    <span className="bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-lg text-[9px] font-bold text-white uppercase tracking-widest">
+                      {template.supportsPhoto ? 'Photo Toggle' : 'No Photo'}
                     </span>
                     {isSelected && (
-                      <div className="bg-indigo-600 text-white p-1.5 rounded-full shadow-md">
+                      <div className="bg-emerald-500 text-white p-1.5 rounded-full shadow-md shadow-emerald-500/40">
                         <Check className="w-4 h-4" />
                       </div>
                     )}
                   </div>
-                  
-                  <div className="text-slate-900 font-extrabold text-2xl tracking-tight">
+                  <div className="text-white font-extrabold text-2xl tracking-tight drop-shadow">
                     {template.name}
                   </div>
                 </div>
 
                 {/* Details */}
-                <div className="p-6 bg-slate-900/80 flex-grow flex flex-col justify-between">
-                  <div className="mb-6">
-                    <h3 className="font-bold text-white text-lg mb-2">{template.name}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      {template.description}
-                    </p>
-                  </div>
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="font-bold text-gray-900 dark:text-white text-base mb-1.5">{template.name}</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed flex-grow">{template.description}</p>
 
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSelectTemplate(template.id);
-                    }}
-                    className={`w-full py-3 rounded-xl text-xs font-semibold tracking-wider transition-all duration-200 ${
+                    onClick={(e) => { e.stopPropagation(); handleSelect(template.id); }}
+                    className={`mt-5 w-full py-2.5 rounded-xl text-xs font-bold tracking-wide transition-all duration-200 ${
                       isSelected
-                        ? 'bg-indigo-600 text-white hover:bg-indigo-500'
-                        : 'bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white'
+                        ? 'bg-emerald-500 text-white hover:bg-emerald-400 shadow-md shadow-emerald-500/30'
+                        : 'bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 hover:bg-emerald-500 hover:text-white'
                     }`}
                   >
-                    {isSelected ? 'Currently Editing' : 'Select Template'}
+                    {isSelected ? '✓ Currently Editing' : 'Use This Template'}
                   </button>
                 </div>
               </div>
